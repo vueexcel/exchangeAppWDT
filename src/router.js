@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+// import Home from './views/Home.vue'
+import ExchangeInfo from './views/ExchangeInfoView.vue'
+import ColorScheme from './views/ColorSchemeView.vue'
+import Logo from './views/LogoView.vue'
 
 Vue.use(Router)
 
@@ -10,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'exchangeInfo',
+      component: ExchangeInfo
     },
     {
       path: '/about',
