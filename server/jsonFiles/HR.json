@@ -1,0 +1,51 @@
+{
+  "userName": "HR@gmail.com",
+  "exchangeName": "World Design Team",
+  "exchangeLogo": "./../../static/brand_image/world.png",
+  "themeColors": [
+    "#0466B5",
+    "#045DAC",
+    "#19A7E3",
+    "#040404",
+    "#0454A9"
+  ],
+  "largeAppMenuItems": [{
+      "app": "Edit",
+	"app_icon": "fa fa-edit",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "app": "Message",
+"app_icon": "fa fa-envelope-o",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "app": "Chart",
+"app_icon": "fa fa-bar-chart-o",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    }
+  ],
+  "smallMenuItems": [{
+      "icon": "FB",
+"app_icon": "fa fa-facebook",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "icon": "YT",
+"app_icon": "fa fa-youtube-play",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "icon": "Twitter",
+"app_icon": "fa fa-twitter",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    }
+  ]
+
+}

@@ -1,0 +1,51 @@
+{
+  "userName": "member@gmail.com",
+  "exchangeName": "Radiant",
+  "exchangeLogo": "./../../static/brand_image/Radiant_Communications_Logo.png",
+  "themeColors": [
+    "#247B14",
+    "#1C43AB",
+    "#F0F1F1",
+    "#0E0E0E",
+    "#6D6C4B"
+  ],
+  "largeAppMenuItems": [{
+      "app": "Address",
+"app_icon": "fa fa-address-book-o",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "app": "Calendar",
+"app_icon": "fa fa-calendar-times-o",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "app": "Stats",
+"app_icon": "fa fa-line-chart",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    }
+  ],
+  "smallMenuItems": [{
+      "icon": "Account",
+"app_icon": "fa fa-bank",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "icon": "Folder",
+"app_icon": "fa fa-camera-retro",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "icon": "DB",
+"app_icon": "fa fa-database",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    }
+  ]
+
+}

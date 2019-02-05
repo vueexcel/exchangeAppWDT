@@ -1,0 +1,51 @@
+{
+  "userName": "client@gmail.com",
+  "exchangeName": "StarBucks",
+  "exchangeLogo": "./../../static/brand_image/starbucks.png",
+  "themeColors": [
+    "#057454",
+    "#318C74",
+    "#F3F5F5",
+    "#060606",
+    "#5B8679"
+  ],
+  "largeAppMenuItems": [{
+      "app": "Post Job",
+	"app_icon": "fa fa-pencil-square-o",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "app": "Hire",
+"app_icon": "fa fa-user-o",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "app": "Work",
+"app_icon": "fa fa-briefcase",
+      "app_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    }
+  ],
+  "smallMenuItems": [{
+      "icon": "Insta",
+"app_icon": "fa fa-instagram",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "icon": "History",
+"app_icon": "fa fa-history",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    },
+    {
+      "icon": "pay",
+"app_icon": "fa fa-dollar",
+      "icon_url": "https://www.canva.com/color-palette/",
+      "desc": "test"
+    }
+  ]
+
+}

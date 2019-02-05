@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "serverless-nodejs-app-executor",
+    "name": "serverless-nodejs-app",
+    "region": "us-east-2"
+  },
+  "api": {
+    "id": "p9r6umpxui"
+  }
+}
