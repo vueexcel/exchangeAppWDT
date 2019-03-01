@@ -4,22 +4,6 @@
       <div class="container-fluid" id="fluid">
         <div id="navigation" class="active">
           <ul class="navigation-menu">
-            <!-- <li
-            class="has-submenu"
-            v-for="(val,index) in roleContent.subchild"
-            :key="index"
-            v-bind:class="{ active_bg: (pageInfo.index === index)}"
-          >
-            <a href="#" @click="getpage(val, index)">{{val.name}}</a>
-            </li>-->
-            <!-- <li
-            class="has-submenu"
-            v-for="(val,index) in roleContent.subchild"
-            :key="index"
-            v-bind:class="{ active_bg: (pageInfo.index === index)}"
-          >
-            <a href="#" @click="getpage(val, index)">{{val.name}}</a>
-            </li>-->
             <li class="has-submenu">
               <a href="#" @click="exchange">Exchange Info</a>
             </li>
@@ -28,6 +12,16 @@
             </li>
             <li class="has-submenu">
               <a href="#" @click="colorScheme">Color Scheme</a>
+            </li>
+            <li class="has-submenu" v-if="hidecognitoPanel">
+              <a href="#" @click="cognito">Cognito</a>
+            </li>
+          </ul>
+          <ul v-if="false" class="navigation-menu" style="float:right; width:60px;">
+            <li>
+              <a class="bg-danger w-75 text-white" href="#" @click="logout">
+                <i class="fa fa-power-off" style="color:#fff !important"></i>
+              </a>
             </li>
           </ul>
         </div>
@@ -40,63 +34,63 @@
 import { mapActions } from "vuex";
 export default {
   name: "SubHeader",
-  props: ["roleContent", "pageInfo"],
+  data() {
+    return {
+      hidecognitoPanel: true //make it false if using created hook
+    };
+  },
+  computed: {
+    selectedSubHeader: {
+      get() {
+        return this.$store.state.selectedSubHeader;
+      },
+      set(v) {
+        this.$store.commit("set_selectedSubHeader", v);
+      }
+    }
+  },
+  created() {
+    var fullUrl = window.origin;
+  },
   methods: {
-    ...mapActions(["sendContentInfo"]),
-    getpage: function(e, index) {
-      // console.log(e.name, index, "======== clicked ");
-      this.sendContentInfo({
-        index: index,
-        name: e.name,
-        pagetitle: e.pagetitle,
-        prefix: e.prefix
-      });
-      if (e.name === "Job Postings") {
-        this.$router.push("/jobPostingPage");
-      }
-      if (e.name === "Create New Job") {
-        this.$router.push("/createNewJob");
-      }
-      if (e.name === "Candidates") {
-        this.$router.push("/clientCandidates");
-      }
-      //new fields ================================
-      if (e.name === "Exchange Info") {
-        // this.$router.push("exchangeInfoPage");
-        // this.$router.push({ path: '/createNewJob/exchangeInfoPage' });
-        this.$router.push({ name: "ExchangeInfoPage" });
-      }
-      if (e.name === "Logo") {
-        // this.$router.push("/logo");
-        this.$router.push({ name: "Logo" });
-      }
-    },
+    ...mapActions("cognito", ["signOut", "sendContentInfo"]),
     exchange: function() {
-      this.$router.push("/createNewUser/exchangeInfo");
+      this.selectedSubHeader = "exchange";
+      this.$router.push("/");
     },
     logo: function() {
-      this.$router.push("/createNewUser/logo");
+      this.selectedSubHeader = "logo";
+      this.$router.push("/logo");
     },
     colorScheme: function() {
-      this.$router.push("/createNewUser/colorScheme");
+      this.selectedSubHeader = "colorScheme";
+      this.$router.push("/colorScheme");
+    },
+    cognito: function() {
+      this.selectedSubHeader = "cognito";
+      this.$router.push("/cognito");
+    },
+    logout() {
+      this.signOut().finally(() => {
+        localStorage.removeItem("currentUser");
+        this.$router.push("/");
+      });
     }
   }
 };
 </script>
 
 <style>
+#topnav {
+  position: sticky !important;
+}
 #topnav .navigation-menu > li.active_bg {
-  /* background-color: #0097a7 !important; */
   border-radius: 5px 5px 0px 0px;
-  /* margin: 0 10px 0 10px; */
   color: #212529;
-  /* background-color:#0f9cf3; */
 }
 #topnav .navigation-menu > li.active_bg a {
-  /* color: #ffffff !important; */
   color: #212529 !important;
   border-radius: 5px 5px 0px 0px;
-  /* margin: 0 10px 0 10px; */
 }
 #topnav .navigation-menu > li.active_bg a:hover {
   color: #212529 !important;
@@ -114,7 +108,6 @@ a:hover {
   border-radius: 5px 5px 0px 0px;
 }
 #topnav .navbar-custom {
-  /* background-color: #b0dbe9; */
   background-color: #fff;
   display: -webkit-box;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -128,6 +121,9 @@ a:hover {
 .btn-primary:hover {
   background-color: #0b8ddd;
   border: 1px solid #0b8ddd;
+}
+.bgColor {
+  background-color: cadetblue;
 }
 @media (min-width: 992px) {
   #topnav .navigation-menu > li:first-of-type > a {

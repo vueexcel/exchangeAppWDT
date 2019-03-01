@@ -1,33 +1,17 @@
 <template>
-  <!-- <div id="project" class="tabcontent" v-if="sendName === 'Exchange Info'"> -->
   <div class="mb-5 pb-5">
     <SubHeader></SubHeader>
-
-    <div id="project" class="tabcontent">
+    <div id="project">
       <div class="card m-b-30 setup-content" id="step-1" style="display: flex;">
-        <!--####### alert ######-->
-        <div>
-          <b-alert :show="alert" @dismissed="alert=false" dismissible>
-            Data has been Submitted successfully
-            <b>&rArr;</b>
-          </b-alert>
-        </div>
-        <!--###### alert ends #######-->
-        <!-- <form @submit.prevent="sendLogo"> -->
         <div class="card-body">
-          <!-- <h3 class="mt-0 header-title" id="headingJob">Logo</h3> -->
-          <div class="row">
-            <SelectUser></SelectUser>
-          </div>
-          <h6 class="text-primary">Portal Logo Settings</h6>
+          <div class="row"></div>
+          <h3 class="mt-0 header-title" id="headingJob">Portal Logo Settings</h3>
           <hr>
           <div class="row">
             <div class="col-md-4">
               <label class="control-label">Current Logo</label>
-              <!-- {{ curentLogo.getLogo }} -->
               <br>
               <div>
-                <!-- <img src="./.././../static/brand_image/world.png" alt="logo" height="48px"> -->
                 <img :src="curentLogo.getLogo" alt="logo" height="48px">
               </div>
             </div>
@@ -44,10 +28,12 @@
                 <div>
                   <div class="form-group">
                     <select class="form-control" v-model="selectLogo">
-                      <option value="./.././../static/brand_image/world.png">WDT</option>
-                      <option value="./.././../static/brand_image/starbucks.png">Starbucks</option>
+                      <option value="https://s3.us-east-2.amazonaws.com/wdt-logos/world.png">WDT</option>
                       <option
-                        value="./.././../static/brand_image/Radiant_Communications_Logo.png"
+                        value="https://s3.us-east-2.amazonaws.com/wdt-logos/starbucks.png"
+                      >Starbucks</option>
+                      <option
+                        value="https://s3.us-east-2.amazonaws.com/wdt-logos/radiant_communications_logo.png"
                       >Radiant</option>
                     </select>
                   </div>
@@ -55,7 +41,6 @@
               </div>
               <div class="row">
                 <div>
-                  <!-- <a class="btn btn-primary" @click="updateNewLogo">Update Logo</a> -->
                   <button
                     class="btn btn-primary btnCustom"
                     :disabled="isLoader"
@@ -100,10 +85,12 @@
                 <div>
                   <div class="form-group">
                     <select class="form-control" v-model="selectLogo">
-                      <option value="./.././../static/brand_image/world.png">WDT</option>
-                      <option value="./.././../static/brand_image/starbucks.png">Starbucks</option>
+                      <option value="https://s3.us-east-2.amazonaws.com/wdt-logos/world.png">WDT</option>
                       <option
-                        value="./.././../static/brand_image/Radiant_Communications_Logo.png"
+                        value="https://s3.us-east-2.amazonaws.com/wdt-logos/starbucks.png"
+                      >Starbucks</option>
+                      <option
+                        value="https://s3.us-east-2.amazonaws.com/wdt-logos/radiant_communications_logo.png"
                       >Radiant</option>
                     </select>
                   </div>
@@ -111,7 +98,6 @@
               </div>
               <div class="row">
                 <div>
-                  <!-- <a class="btn btn-primary" @click="updateNewFavicon">Update Logo</a> -->
                   <button
                     class="btn btn-primary btnCustom"
                     :disabled="isLoader"
@@ -124,11 +110,9 @@
                   </button>
                 </div>
               </div>
-              <!-- <button class="btn btn-primary pull-right" type="submit">Submit</button> -->
             </div>
           </div>
         </div>
-        <!-- </form> -->
       </div>
     </div>
   </div>
@@ -136,66 +120,49 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import SubHeader from "./../components/SubHeader";
-import SelectUser from "./../components/SelectUserComponent";
+import SubHeader from "./SubHeader";
+import SelectUser from "./SelectUser";
+import world from "./../static/brand_image/world.png";
 export default {
   name: "LogoComponent",
-  props: ["sendName"],
   components: {
     SubHeader,
     SelectUser
   },
-  data: function() {
-    return {
-      exchangeTitle: "",
-      selectLogo: "./.././../static/brand_image/world.png"
-    };
-  },
   computed: {
     ...mapGetters({
-      // alert: "getalertInfo",
-      curentLogo: "getexchangeInfo"
+      curentLogo: "getexchangeInfo" //throwing full state
     }),
-    alert: {
+    selectLogo: {
       set(val) {
-        this.$store.commit("updateAlert", val);
+        this.$store.commit("setselectLogo", val);
       },
       get() {
-        // console.log(this.$store.state.headers.isLoader, "from isloader vmodel");
-        // return this.exchangeInfo.selectExchangeUser;
-        return this.$store.state.headers.alert;
+        return this.$store.state.selectLogo;
       }
     },
     isLoader: {
       set(val) {
-        this.$store.commit("updateisLoader", val);
+        this.$store.commit("setisLoader", val);
       },
       get() {
-        return this.$store.state.headers.isLoader;
+        return this.$store.state.isLoader;
       }
     }
   },
   methods: {
-    ...mapActions(["exchangeInfo", "sendLogoInfo"]),
-    sendExchangeInfo: function() {
-      this.exchangeInfo({
-        title: this.exchangeTitle
-      });
-      this.exchangeTitle = "";
-    },
+    ...mapActions(["sendLogoInfo"]),
     updateNewLogo: function() {
       this.sendLogoInfo({
         logo: this.selectLogo,
         type: "Logo"
       });
-      // this.exchangeTitle = "";
     },
     updateNewFavicon: function() {
       this.sendLogoInfo({
         logo: this.selectLogo,
         type: "Favicon"
       });
-      // this.exchangeTitle = "";
     }
   }
 };
@@ -204,7 +171,7 @@ export default {
 <style>
 #project {
   text-align: left;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 #headingJob {
   font-weight: bold;

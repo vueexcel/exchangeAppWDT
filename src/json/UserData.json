@@ -1,17 +1,16 @@
-[
-    {
+[{
         "email": "client@gmail.com",
-        "password": "123456",
+        "password": "xS&d$?3bJ",
         "role": "Client"
     },
     {
         "email": "member@gmail.com",
-        "password": "123456",
+        "password": "xS&d$?3bJ",
         "role": "Team Member"
     },
     {
         "email": "hr@gmail.com",
-        "password": "123456",
+        "password": "xS&d$?3bJ",
         "role": "HR"
     },
     {

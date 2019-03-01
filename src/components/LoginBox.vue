@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import UserData from './../json/UserData.json'
+import UserData from '@/json/UserData.json'
 export default {
   name: 'LoginBox',
   data () {
